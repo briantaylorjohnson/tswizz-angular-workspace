@@ -119,6 +119,123 @@
           }
         }
       }
+    },
+    "workspace-home": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/workspace-home",
+      "sourceRoot": "projects/workspace-home/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/workspace-home",
+            "index": "projects/workspace-home/src/index.html",
+            "main": "projects/workspace-home/src/main.ts",
+            "polyfills": "projects/workspace-home/src/polyfills.ts",
+            "tsConfig": "projects/workspace-home/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/workspace-home/src/favicon.ico",
+              "projects/workspace-home/src/assets"
+            ],
+            "styles": [
+              "projects/workspace-home/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/workspace-home/src/environments/environment.ts",
+                  "with": "projects/workspace-home/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "workspace-home:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "workspace-home:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "workspace-home:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/workspace-home/src/test.ts",
+            "polyfills": "projects/workspace-home/src/polyfills.ts",
+            "tsConfig": "projects/workspace-home/tsconfig.spec.json",
+            "karmaConfig": "projects/workspace-home/karma.conf.js",
+            "assets": [
+              "projects/workspace-home/src/favicon.ico",
+              "projects/workspace-home/src/assets"
+            ],
+            "styles": [
+              "projects/workspace-home/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/workspace-home/tsconfig.app.json",
+              "projects/workspace-home/tsconfig.spec.json",
+              "projects/workspace-home/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/workspace-home/e2e/protractor.conf.js",
+            "devServerTarget": "workspace-home:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "workspace-home:serve:production"
+            }
+          }
+        }
+      }
     }},
   "defaultProject": "my-first-app"
 }
