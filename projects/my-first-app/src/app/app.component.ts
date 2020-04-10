@@ -14,7 +14,7 @@ export class Chap3Component {
 @Component({
   selector: 'info-blurb',
   template: `
-    <p>This is just a test</p>
+    <p>This is just a test component.</p>
   `,
   styles: [`
     p {color: green}
